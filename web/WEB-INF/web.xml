@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Chat Application</display-name>
+    <description>Aplicativo de Chat criado para a disciplina WEB2-TADS-IFPE</description>
+    <context-param>
+        <param-name>adminEmail</param-name>
+        <!-- Adiciona um endereço de e-mail do administrador do chat. -->
+        <param-value>essechat@gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>sessionTimeout</param-name>
+        <!-- Adicionar tempo em minutos após o qual a sessão do usuário expira.
+        Se o usuário não fizer qualquer pedido após esse tempo,
+        será automaticamente encerrada a conexão.
+        O padrão é 30 minutos.-->
+        <param-value>30</param-value>
+    </context-param>
+    <context-param>
+        <param-name>refreshAfter</param-name>
+        <!-- Adiciona tempo em segundos após o qual o a janela do navegador 
+        do usuário será atualizada automaticamente para exibir novas mensagens.
+        O padrão é 5 segundos.-->
+        <param-value>7</param-value>
+    </context-param>
+    <context-param>
+        <param-name>maxNoOfMessages</param-name>
+        <!--  Número máximo de mensagens que são armazenadas numa lista, 
+        que é usado para armazenar todas as mensagens em uma sala. 
+        Após este limite as mensagens mais velhas serão removidas.
+        O padrão é 25-->
+        <param-value>23</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>esse.chat.control.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageChatServlet</servlet-name>
+        <servlet-class>esse.chat.control.ManageChatServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveInfoServlet</servlet-name>
+        <servlet-class>esse.chat.control.SaveInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastraChatterServlet</servlet-name>
+        <servlet-class>esse.chat.control.CadastraChatterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastraMonitorServlet</servlet-name>
+        <servlet-class>esse.chat.control.CadastraMonitorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaChattersServlet</servlet-name>
+        <servlet-class>esse.chat.control.ListaChattersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrorHandler</servlet-name>
+        <servlet-class>esse.chat.control.ErrorHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageChatServlet</servlet-name>
+        <url-pattern>/control/ManageChatServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/control/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveInfoServlet</servlet-name>
+        <url-pattern>/control/SaveInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastraChatterServlet</servlet-name>
+        <url-pattern>/control/CadastraChatterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastraMonitorServlet</servlet-name>
+        <url-pattern>/CadastraMonitorServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ListaChattersServlet</servlet-name>
+        <url-pattern>/ListaChattersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/ErrorHandler</url-pattern>
+    </servlet-mapping>
+    <!-- Este recurso é utilizado para remover um usuário cuja sessão expirou.
+        Sem ela, após expiradas as sessões, o nome dos usuários continuariam na 
+        lista dos usuários logados.-->
+    <listener>
+        <listener-class>esse.chat.control.SessionListener</listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>login.html</welcome-file>
+        <welcome-file>login.htm</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>500</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+</web-app>

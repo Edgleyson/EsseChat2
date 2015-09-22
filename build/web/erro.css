@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03/07/2015, 20:41:02
+    Author     : EdDe
+*/
+
+body{
+    background-image: url("images/ErrorPage.jpg");
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-repeat:no-repeat;
+    background-size: auto;
+    text-align: center;
+}
+
+h2{
+    
+    font-size: 1.5em;
+    color: #ffff33;
+    margin-top: 40px;
+    margin-bottom: 6px;
+    padding: 0px;
+}
+
+p{
+    font-weight: bold;
+    font-size: 1em;
+    color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+}
+
+header{
+    margin: 0px 20%;
+}
+
+a{
+    cursor:pointer;
+}
+
+a, a:link, a:visited, a:active {
+	text-decoration: none;
+	color:gold;
+}
+a:hover {
+	text-decoration:underline;
+	color:palegreen; 
+}
+
+.menor{
+    font-size: 80%;
+}
+
+.error{
+    margin-top: 25px;
+}
